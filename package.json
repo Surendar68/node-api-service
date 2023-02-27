@@ -1,0 +1,17 @@
+{
+  "name": "simple-api",
+  "version": "1.0.0",
+  "description": "sample api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.1.2",
+    "nodemailer": "^6.9.1",
+    "pg": "^8.9.0"
+  }
+}
