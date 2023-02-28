@@ -1,6 +1,6 @@
 const http = require('http');
 const { defaultHandler, postHandler, getHandler } = require('./controller');
-// const connection = require('./dbconnection');
+const connection = require('./dbconnection');
 
 const server = http.createServer((req, res) => {
     const reqURL = req.url;
@@ -18,10 +18,10 @@ const server = http.createServer((req, res) => {
     }
 });
 
-// connection.connect((err) => {
-//     if (err) throw err;
-//     console.log('Connected to database');
-// });
+connection.connect((err) => {
+    if (err) throw err;
+    console.log('Connected to database');
+});
 
 const hostname = '0.0.0.0';
 const port = 3000;

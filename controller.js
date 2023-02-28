@@ -1,4 +1,4 @@
-// const connection = require('./dbconnection');
+const connection = require('./dbconnection');
 const transporter = require('./mailer.js');
 
 const defaultHandler = (request, response) => {
@@ -14,12 +14,12 @@ const defaultHandler = (request, response) => {
 };
 
 const getHandler = (request, response) => {
-    // connection.query('SELECT * FROM user_info', (err, rows) => {
-    //     if (err) throw err;
-    //     response.statusCode = 200;
-    //     response.setHeader('Content-Type', 'application/json');
-    //     response.end(JSON.stringify(rows));
-    // });
+    connection.query('SELECT * FROM user_info', (err, rows) => {
+        if (err) throw err;
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(rows));
+    });
 };
 
 const postHandler = (request, response) => {
@@ -30,30 +30,30 @@ const postHandler = (request, response) => {
     //read the data from request
     request.on('end', () => {
         const data = JSON.parse(body);
-        // connection.query('INSERT INTO user_info SET ?', { personal_details: JSON.stringify(data) }, (err, result) => {
-        //     console.log(data.email);
-        //     if (err) throw err;
-        //     if (result.insertId) {
-        //         let usermail = data.email
-        //         let mailOptions = {
-        //             from: 'surendar.b@redblox.io', // sender address
-        //             to: usermail, // list of receivers
-        //             subject: 'Test Mail', // Subject line
-        //             text: 'Hello world?', // plain text body
-        //             html: '<b>Hello world?</b>' // html body
-        //         };
-        //         transporter.sendMail(mailOptions, (error, info) => {
-        //             if (error) {
-        //                 console.log(error);
-        //             } else {
-        //                 console.log('Message sent: %s', info.messageId);
-        //             }
-        //         });
-        //     }
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'application/json');
-        response.end(JSON.stringify({ message: 'Data inserted successfully' }));
-        // });
+        connection.query('INSERT INTO user_info SET ?', { personal_details: JSON.stringify(data) }, (err, result) => {
+            console.log(data.email);
+            if (err) throw err;
+            if (result.insertId) {
+                let usermail = data.email
+                let mailOptions = {
+                    from: 'surendarsurea619@gmail.com', // sender address
+                    to: usermail, // list of receivers
+                    subject: 'Test Mail', // Subject line
+                    text: 'Testing mail check', // plain text body
+                    html: '<b>Hello world?</b>' // html body
+                };
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log('Message sent: %s', info.messageId);
+                    }
+                });
+            }
+            response.statusCode = 200;
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify({ message: 'Data inserted successfully' }));
+        });
     });
 }
 
