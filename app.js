@@ -5,9 +5,9 @@ const { defaultHandler, postHandler, getHandler } = require('./controller');
 const server = http.createServer((req, res) => {
     const reqURL = req.url;
     const reqMethod = req.method;
-    if (reqMethod === 'GET' && reqURL === '/api/data') {
+    if (reqMethod === 'GET' && reqURL === '/api/get-data') {
         getHandler(req, res);
-    } else if (reqMethod === 'POST' && reqURL === '/api/data') {
+    } else if (reqMethod === 'POST' && reqURL === '/api/create-data') {
         postHandler(req, res);
     } else if (reqMethod === 'GET' && reqURL === '/') {
         res.statusCode = 200;
