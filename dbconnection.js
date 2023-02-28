@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 
 // const connection = mysql.createConnection({
 //     host: 'localhost',
@@ -7,4 +7,4 @@ const mysql = require('mysql2');
 //     database: 'node-database'
 // });
 
-module.exports = connection;
+// module.exports = connection;
